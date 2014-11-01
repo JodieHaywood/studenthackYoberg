@@ -78,8 +78,16 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#twilio settings 
+TWILIO_ACCOUNT_SID = 'ACf979c3c1e76d09992e59c6ea9aa00bab'
+TWILIO_AUTH_TOKEN = '36c4f7e1c0570fd9594380931d5aa02e'
+TWILIO_NUMBER = '+441963602023'
+
+
+
+

@@ -7,5 +7,6 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', 'yoscribe.views.home', name='home'),
+    url(r'^twilio/', include('yosms.urls'))
     url(r'^admin/', include(admin.site.urls)),
 )
