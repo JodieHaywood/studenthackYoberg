@@ -76,6 +76,27 @@ def respondToUser(request):
     respMessage.message(randomData)
     return HttpResponse(respMessage)
 
+  elif command == "INFO":
+    print "In info"
+    name = str(splitStr[1])
+    try:
+      chosenData = SelectedCompany.getSelectedCompanyResponse(name)
+      print chosenData
+      try:
+        respMessage = twiml.Response()
+        respMessage.message(chosenData)
+        return HttpResponse(respMessage)
+      except Exception as e5:
+        print e5
+    except Exception as e4:
+      print e4
+      try:
+        respMessage = twiml.Response()
+        respMessage.message("The chosen data point, " + name + ", is not valid.")
+        return HttpResponse(respMessage)
+      except Exception as e6
+        print e6
+
 
 # Create your views here.
 
