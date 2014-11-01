@@ -10,11 +10,13 @@ def home(request):
   return HttpResponse("Hello World")
 
 def yo(request):
-  name = request.GET['username']
+  name = str(request.GET['username'])
+  print name
   result = "Yo! " + name
   try:
     user = Yoscriber.objects.get(yoname=name)
     number = user.phonenumber
+    print number
 
     randomData = RandomCompany.getRandomCompanyResponse()
 
