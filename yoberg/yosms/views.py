@@ -111,7 +111,7 @@ def respondToUser(request):
           stockYo = StockYoscription.objects.get(user=yoUser)
           stockYo.stock = stockName
           stockYo.save()
-        except Exception ex4:
+        except Exception as ex4:
           print ex4
           stockYo = StockYoscription(user=yoUser, stock=stockName);
           stockYo.save()
