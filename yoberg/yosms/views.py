@@ -78,7 +78,7 @@ def respondToUser(request):
 
   elif command == "INFO":
     print "In info"
-    name = str(splitStr[1])
+    name = smsStr[5:]
     try:
       chosenData = str(SelectedCompany.getSelectedCompanyResponse(name))
       print chosenData
