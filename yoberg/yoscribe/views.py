@@ -23,7 +23,7 @@ def yo(request):
   except Yoscriber.DoesNotExist:
     result = result + ", oops..."
 
-  user = Yoscribe('DANCU', 7772031241)
+  user = Yoscriber('DANCU', 7772031241)
   shizz = SelectedCompany.getSelectedCompanyResponse("TSLA")
   sendSMS(user, randomData)
 
