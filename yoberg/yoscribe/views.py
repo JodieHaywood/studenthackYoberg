@@ -20,3 +20,7 @@ def yo(request):
     result = result + ", oops..."
 
   return HttpResponse(result);
+
+
+def receiveSMS(request):
+  return HttpResponse("Dat SMS...")

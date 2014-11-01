@@ -8,5 +8,6 @@ urlpatterns = patterns('',
 
     url(r'^$', 'yoscribe.views.home', name='home'),
     url(r'^yo/', 'yoscribe.views.yo', name='yo'),
+    url(r'^sms/', 'yoscribe.views.receiveSMS', name='sms'),
     url(r'^admin/', include(admin.site.urls)),
 )
