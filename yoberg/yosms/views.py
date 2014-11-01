@@ -32,11 +32,15 @@ def respondToUser(request):
   print request.GET['From']
   phoneNumber = str(request.GET['From'])
   print phoneNumber
+  print smsStr
 
   splitStr = smsStr.split()
+  print splitStr
   command = splitStr[0]
+  print command
 
   if command is "YOSCRIBE":
+    print "In yoscribe"
     name = splitStr[1]
     newUser = Yoscribe(yoname=name, phonenumber=phoneNumber)
     newUser.save()
@@ -48,6 +52,7 @@ def respondToUser(request):
     return HttpResponse(respMessage)
 
   elif command is "RANDOM":
+    print "In random"
     #data = RandomCompany.getRandomCompanyResponse()
     #sendText(phoneNumber, data) needs more parsing of the data
     #sendSMS(user, randomData)
