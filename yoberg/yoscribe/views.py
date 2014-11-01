@@ -15,9 +15,9 @@ def yo(request):
     user = Yoscriber.objects.get(yoname=name)
     number = user.phonenumber
 
-    randomData = "" #actually get the random bloom data
+    randomData = RandomCompany.getRandomCompanyResponse()
 
-    #sendText(number, randomData)
+    #sendText(number, randomData) needs more parsing of the data
   except Yoscriber.DoesNotExist:
     result = result + ", oops..."
 
@@ -25,7 +25,3 @@ def yo(request):
   result = result + ", shizz - " + str(shizz)
 
   return HttpResponse(result);
-
-
-def receiveSMS(request):
-  return HttpResponse("Dat SMS...")
