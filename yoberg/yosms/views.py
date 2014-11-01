@@ -80,7 +80,7 @@ def respondToUser(request):
     print "In info"
     name = str(splitStr[1])
     try:
-      chosenData = SelectedCompany.getSelectedCompanyResponse(name)
+      chosenData = str(SelectedCompany.getSelectedCompanyResponse(name))
       print chosenData
       try:
         respMessage = twiml.Response()
