@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-import models
+from models import Yoscriber
 
 # Create your views here.
 def home(request):
@@ -8,7 +8,7 @@ def home(request):
 
 def yo(request):
   name = request.GET['username']
-  return HttpResponse("Yo!" + name);
+  result = "Yo! " + name
   try:
     user = Yoscriber.objects.get(yoname=name)
     number = user.phonenumber
@@ -17,4 +17,6 @@ def yo(request):
 
     #sendText(number, randomData)
   except Yoscriber.DoesNotExist:
-    print("oops...")
+    result = result + ", oops..."
+
+  return HttpResponse(result);
