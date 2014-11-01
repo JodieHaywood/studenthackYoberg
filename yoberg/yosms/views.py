@@ -41,7 +41,7 @@ def respondToUser(request):
 
   if command == "YOSCRIBE":
     print "In yoscribe"
-    name = splitStr[1]
+    name = str(splitStr[1])
     newUser = Yoscribe(yoname=name, phonenumber=phoneNumber)
     newUser.save()
 
