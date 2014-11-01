@@ -44,7 +44,7 @@ def respondToUser(request):
     name = str(splitStr[1])
     try:
       try:
-        newUser = Yoscribe(yoname=name, phonenumber=phoneNumber)
+        newUser = Yoscriber(yoname=name, phonenumber=phoneNumber)
         newUser.save()
       except e:
         print e
