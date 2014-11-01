@@ -4,6 +4,7 @@ from models import Yoscriber
 from bloomberg import RandomCompany
 from bloomberg import SelectedCompany
 from yosms.views import sendSMS
+from yosms.models import StockYoscription
 
 # Create your views here.
 def home(request):
