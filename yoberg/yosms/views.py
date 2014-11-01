@@ -30,7 +30,7 @@ def updateSMSStatus(request):
 def respondToUser(request):
   from pprint import pprint
   pprint(request)
-  smsStr = str(request.GET['Body'])
+  smsStr = str(request.GET['Body']).upper()
   print request.GET['From']
   phoneNumber = str(request.GET['From'])
   print phoneNumber
@@ -100,10 +100,9 @@ def respondToUser(request):
 
   elif command == "STOCKSCRIBE":
     print "In stock subscription"
-    name = str(splitStr[1])
-    stockName = str(splitStr[2])
+    stockName = str(splitStr[1])
     try:
-      yoUser = Yoscriber.objects.get(yoname=name)
+      yoUser = Yoscriber.objects.get(phonenumber=phoneNumber)
       try:
         chosenData = str(SelectedCompany.getSelectedCompanyResponse(stockName))
 
