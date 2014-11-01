@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from yosms.models import SMS
+from yosms.models import StockYoscription
 from twilio.rest import TwilioRestClient
 from yoberg import settings
 from django.http import HttpResponse
@@ -96,6 +97,43 @@ def respondToUser(request):
         return HttpResponse(respMessage)
       except Exception as exep6:
         print exep6
+
+  elif command == "STOCKSCRIBE":
+    print "In stock subscription"
+    name = str(splitStr[1])
+    stockName = str(splitStr[2])
+    try:
+      yoUser = Yoscriber.objects.get(yoname=name)
+      try:
+        chosenData = str(SelectedCompany.getSelectedCompanyResponse(stockName))
+
+        try:
+          stockYo = StockYoscription.objects.get(user=yoUser)
+          stockYo.stock = stockName
+          stockYo.save()
+        except Exception ex4
+          print ex4
+          stockYo = StockYoscription(user=yoUser, stock=stockName);
+          stockYo.save()
+
+        respMessage = twiml.Response()
+        respMessage.message(chosenData)
+        return HttpResponse(respMessage)
+
+      except Exception as ex3:
+        print ex3
+        respMessage = twiml.Response()
+        respMessage.message("That is not a valid stock. To verify, use: INFO <stock>")
+        return HttpResponse(respMessage)
+
+    except Exception as ex1:
+      print ex1
+      try:
+        respMessage = twiml.Response()
+        respMessage.message("User not subscribed. To register, send: YOSCRIBE <user>")
+        return HttpResponse(respMessage)
+      except Exception as ex2:
+        print ex2
 
 
 # Create your views here.
