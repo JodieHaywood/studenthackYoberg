@@ -42,8 +42,14 @@ def respondToUser(request):
   if command == "YOSCRIBE":
     print "In yoscribe"
     name = str(splitStr[1])
-    newUser = Yoscribe(yoname=name, phonenumber=phoneNumber)
-    newUser.save()
+    try:
+      newUser = Yoscribe(yoname=name, phonenumber=phoneNumber)
+      newUser.save()
+    except e:
+      print e
+      respMessage = twiml.Response()
+      respMessage.message("That username and number are in use or the database is down")
+      return HttpResponse(respMessage)
 
     #TODO: add in an item to subscribe to, along with the data format required...
 
