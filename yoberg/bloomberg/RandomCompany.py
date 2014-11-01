@@ -7,7 +7,7 @@ def getRandomCompanyResponse():
         host = "10.8.8.1"
         port = 8194
 
-        with open("companylist.csv") as csvfile:
+        with open("bloomberg/companylist.csv") as csvfile:
                 linereader = csv.reader(csvfile, delimiter=',')
                 companies = []
                 for row in linereader:
