@@ -13,7 +13,7 @@ def sendSMS(user, messageIn):
   message = client.messages.create(body=messageIn,
                                    to=user.phonenumber,
                                    from_=settings.TWILIO_NUMBER)
-  newSMS = SMS(sendTo=user,
+  newSMS = SMS(sentTo=user,
                sid=message.sid,
                message=message)
   newSMS.save()
