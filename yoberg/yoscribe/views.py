@@ -22,7 +22,8 @@ def yo(request):
 
     #sendText(number, randomData) needs more parsing of the data
     sendSMS(user, randomData)
-  except Yoscriber.DoesNotExist:
+  except e:
+    print e
     result = result + ", oops..."
 
   #user = Yoscriber(yoname="DANCU", phonenumber="+447772031241")
