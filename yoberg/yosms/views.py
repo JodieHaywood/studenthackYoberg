@@ -52,6 +52,7 @@ def respondToUser(request):
           respMessage = twiml.Response()
           respMessage.message("That username and number are in use or the database is down")
           return HttpResponse(respMessage)
+          pass
         except twilio.TwilioRestException as e:
           print e
       #TODO: add in an item to subscribe to, along with the data format required...

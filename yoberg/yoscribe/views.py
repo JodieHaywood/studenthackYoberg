@@ -22,7 +22,7 @@ def yo(request):
 
     #sendText(number, randomData) needs more parsing of the data
     sendSMS(user, randomData)
-  except e:
+  except Exception as e:
     print e
     result = result + ", oops..."
 
