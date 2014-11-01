@@ -4,5 +4,5 @@ from django.db import models
 
 
 class Yoscriber(models.Model):
-    yoname = models.CharField(max_length=200)
-    phonenumber = models.CharField(max_length=15)
+    yoname = models.CharField(max_length=200, unique=true)
+    phonenumber = models.CharField(max_length=15, unique=true)
