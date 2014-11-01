@@ -4,6 +4,7 @@ from models import Yoscriber
 from bloomberg import RandomCompany
 from bloomberg import SelectedCompany
 from yosms.views import sendSMS
+from yosms.models import StockYoscription
 
 # Create your views here.
 def home(request):
@@ -14,15 +15,22 @@ def yo(request):
   print name
   result = "Yo! " + name
   try:
-    user = Yoscriber.objects.get(yoname=name)
-    number = user.phonenumber
+    userYo = Yoscriber.objects.get(yoname=name)
+    number = userYo.phonenumber
     print number
 
-    randomData = RandomCompany.getRandomCompanyResponse()
+    try:
+      stockYo = StockYoscription.objects.get(user=userYo)
+      data = SelectedCompany.getSelectedCompanyResponse(stockYo.stock)
+      sendSMS(userYo, data)
 
-    #sendText(number, randomData) needs more parsing of the data
-    sendSMS(user, randomData)
-  except e:
+    except Exception as e2:
+      print e2
+      #randomData = "This is a test from the script of DOOM"
+      randomData = RandomCompany.getRandomCompanyResponse()
+      sendSMS(userYo, randomData)
+
+  except Exception as e:
     print e
     result = result + ", oops..."
 
