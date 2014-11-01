@@ -1,4 +1,5 @@
 from django.shortcuts import render
+<<<<<<< HEAD
 from yosms.models import SMS
 from twilio.rest import TwilioRestClient
 from yoberg import settings
@@ -16,3 +17,30 @@ def sendSMS(user, message):
 
 def updateSMSStatus(request):
   pass
+=======
+from django.http import HttpResponse
+from models import Yoscriber
+from bloomberg import RandomCompany
+from bloomberg import SelectedCompany
+
+# Create your views here.
+
+def receiveSMS(request):
+  return HttpResponse("Dat SMS...")
+  smsStr = "" #TODO: get the correct SMS string...
+  phoneNumber = "" #TODO: get the phone number
+
+  splitStr = smsStr.split()
+  command = splitStr[0]
+  name = splitStr[1]
+
+  if command == "YOSCRIBE":
+    newUser = Yoscribe(yoname=name, phonenumber=phoneNumber)
+    newUser.save()
+
+    #TODO: add in an item to subscribe to, along with the data format required...
+
+  elif command == "RANDOM":
+    data = RandomCompany.getRandomCompanyResponse()
+    #sendText(phoneNumber, data) needs more parsing of the data
+>>>>>>> 59ebe9bcb10264331c58b093dff833a148d3d851
