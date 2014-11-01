@@ -94,7 +94,7 @@ def respondToUser(request):
         respMessage = twiml.Response()
         respMessage.message("The chosen data point, " + name + ", is not valid.")
         return HttpResponse(respMessage)
-      except Exception as exep6
+      except Exception as exep6:
         print exep6
 
 
