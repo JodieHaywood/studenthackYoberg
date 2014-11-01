@@ -29,7 +29,7 @@ def respondToUser(request):
   smsStr = str(request.POST['Body'])
   print request.POST['From']
   phoneNumber = str(request.POST['From'])
-  print phonenumber
+  print phoneNumber
 
   splitStr = smsStr.split()
   command = splitStr[0]
