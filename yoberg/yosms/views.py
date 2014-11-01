@@ -57,7 +57,7 @@ def respondToUser(request):
       #TODO: add in an item to subscribe to, along with the data format required...
 
       respMessage = twiml.Response()
-      respMessage.message("Yoscription successful! " + phoneNumber + ", Your Msg: " + smsStr)
+      respMessage.message("Yoscription successful! " + phoneNumber + ", Your Msg: " + smsStr +"")
       return HttpResponse(respMessage)
     except twilio.TwilioRestException as e:
       print e
