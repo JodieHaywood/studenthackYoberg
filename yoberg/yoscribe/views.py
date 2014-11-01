@@ -25,7 +25,7 @@ def yo(request):
 
   user = Yoscriber('DANCU', 7772031241)
   shizz = SelectedCompany.getSelectedCompanyResponse("TSLA")
-  sendSMS(user, randomData)
+  sendSMS(user, shizz)
 
   result = result + ", shizz - " + str(shizz)
 
