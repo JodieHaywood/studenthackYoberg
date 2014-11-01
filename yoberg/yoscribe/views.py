@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from models import Yoscriber
 from bloomberg import RandomCompany
 from bloomberg import SelectedCompany
-from yosms import views
+from yosms.views import sendSMS
 
 # Create your views here.
 def home(request):
@@ -19,13 +19,13 @@ def yo(request):
     randomData = RandomCompany.getRandomCompanyResponse()
 
     #sendText(number, randomData) needs more parsing of the data
-    views.sendSMS(user, randomData)
+    sendSMS(user, randomData)
   except Yoscriber.DoesNotExist:
     result = result + ", oops..."
 
   user = Yoscriber('DANCU', 7772031241)
   shizz = SelectedCompany.getSelectedCompanyResponse("TSLA")
-  views.sendSMS(user, randomData)
+  sendSMS(user, randomData)
 
   result = result + ", shizz - " + str(shizz)
 
