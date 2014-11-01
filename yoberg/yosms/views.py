@@ -31,9 +31,9 @@ def respondToUser(request):
 
   splitStr = smsStr.split()
   command = splitStr[0]
-  name = splitStr[1]
 
   if command is "YOSCRIBE":
+    name = splitStr[1]
     newUser = Yoscribe(yoname=name, phonenumber=phoneNumber)
     newUser.save()
 
