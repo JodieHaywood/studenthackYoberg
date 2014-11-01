@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from bloomberg import RandomCompany
 from bloomberg import SelectedCompany
 from twilio import twiml
+from yoscribe.models import Yoscriber
 # Create your views here.
 
 def sendSMS(user, messageIn):
