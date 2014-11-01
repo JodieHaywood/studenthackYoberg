@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from models import Yoscriber
-import bloomberg.RandomCompany
+from bloomberg import RandomCompany
 
 # Create your views here.
 def home(request):
@@ -20,7 +20,7 @@ def yo(request):
   except Yoscriber.DoesNotExist:
     result = result + ", oops..."
 
-  shizz = getRandomCompanyResponse()
+  shizz = RandomCompany.getRandomCompanyResponse()
   result = result + ", shizz - " + shizz
 
   return HttpResponse(result);
