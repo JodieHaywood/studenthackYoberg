@@ -8,6 +8,7 @@ from bloomberg import SelectedCompany
 # Create your views here.
 
 def sendSMS(user, message):
+  print user.phonenumber
   client = TwilioRestClient(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
   message = client.messages.create(body=message,
                                    to=user.phonenumber,
