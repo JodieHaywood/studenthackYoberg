@@ -26,14 +26,14 @@ def updateSMSStatus(request):
   pass
 
 def respondToUser(request):
-  smsStr = str(request.GET['Body'])
-  phoneNumber = str(request.GET['From'])
+  smsStr = str(request.POST['Body'])
+  phoneNumber = str(request.POST['From'])
 
   splitStr = smsStr.split()
   command = splitStr[0]
   name = splitStr[1]
 
-  if command == "YOSCRIBE":
+  if command is "YOSCRIBE":
     newUser = Yoscribe(yoname=name, phonenumber=phoneNumber)
     newUser.save()
 
@@ -43,7 +43,7 @@ def respondToUser(request):
     respMessage.message("Yoscription successful! " + phoneNumber + ", Your Msg: " + smsStr)
     return HttpResponse(respMessage)
 
-  elif command == "RANDOM":
+  elif command is "RANDOM":
     #data = RandomCompany.getRandomCompanyResponse()
     #sendText(phoneNumber, data) needs more parsing of the data
     #sendSMS(user, randomData)
