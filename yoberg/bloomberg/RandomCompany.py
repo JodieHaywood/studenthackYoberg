@@ -10,4 +10,7 @@ def getRandomCompanyResponse():
                 for row in linereader:
                         companies.append(row[0])
 
-                return Bloomberg.getFields(random.choice(companies))
+                result = Bloomberg.getFields(random.choice(companies))
+
+                strResult = result['DS002'] + " last priced at: " + result['PX_LAST'] + " " + result['DS004']
+                return strResult
