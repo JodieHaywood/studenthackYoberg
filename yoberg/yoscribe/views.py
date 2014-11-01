@@ -23,11 +23,11 @@ def yo(request):
   except Yoscriber.DoesNotExist:
     result = result + ", oops..."
 
-  user = Yoscriber(yoname="DANCU", phonenumber="+447772031241")
-  user.save()
-  shizz = SelectedCompany.getSelectedCompanyResponse("TSLA")
-  sendSMS(user, shizz)
+  #user = Yoscriber(yoname="DANCU", phonenumber="+447772031241")
+  #user.save()
+  #shizz = SelectedCompany.getSelectedCompanyResponse("TSLA")
+  #sendSMS(user, shizz)
 
-  result = result + ", shizz - " + str(shizz)
+  #result = result + ", shizz - " + str(shizz)
 
   return HttpResponse(result);

@@ -26,9 +26,31 @@ def updateSMSStatus(request):
   pass
 
 def respondToUser(request):
-  respMessage = twiml.Response()
-  respMessage.message("Yo, bitch we got ya message and will process it and shit")
-  return HttpResponse(respMessage)
+  smsStr = str(request.GET['Body'])
+  phoneNumber = str(request.GET['From'])
+
+  splitStr = smsStr.split()
+  command = splitStr[0]
+  name = splitStr[1]
+
+  if command == "YOSCRIBE":
+    newUser = Yoscribe(yoname=name, phonenumber=phoneNumber)
+    newUser.save()
+
+    #TODO: add in an item to subscribe to, along with the data format required...
+
+    respMessage = twiml.Response()
+    respMessage.message("Yoscription successful! " + phoneNumber + ", Your Msg: " + smsStr)
+    return HttpResponse(respMessage)
+
+  elif command == "RANDOM":
+    #data = RandomCompany.getRandomCompanyResponse()
+    #sendText(phoneNumber, data) needs more parsing of the data
+    #sendSMS(user, randomData)
+    randomData = RandomCompany.getRandomCompanyResponse()
+    respMessage = twiml.Response()
+    respMessage.message(randomData)
+    return HttpResponse(respMessage)
 
 
 # Create your views here.
