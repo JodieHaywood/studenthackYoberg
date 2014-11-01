@@ -5,21 +5,31 @@ from yoberg import settings
 from django.http import HttpResponse
 from bloomberg import RandomCompany
 from bloomberg import SelectedCompany
+from twilio import twiml
 # Create your views here.
 
 def sendSMS(user, messageIn):
   print user.phonenumber
-  client = TwilioRestClient(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
-  message = client.messages.create(body=messageIn,
-                                   to=user.phonenumber,
-                                   from_=settings.TWILIO_NUMBER)
-  newSMS = SMS(sentTo=user,
-               sid=message.sid,
-               message=message)
-  newSMS.save()
+  try:
+    client = TwilioRestClient(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
+    message = client.messages.create(body=messageIn,
+                                     to=user.phonenumber,
+                                     from_=settings.TWILIO_NUMBER)
+    newSMS = SMS(sentTo=user,
+                 sid=message.sid,
+                 message=message)
+    newSMS.save()
+  except twilio.TwilioRestException as e:
+    print e
 
 def updateSMSStatus(request):
   pass
+
+def respondToUser(request):
+  respMessage = twiml.Response()
+  respMessage.message("Yo, bitch we got ya message and will process it and shit")
+  return HttpResponse(respMessage)
+
 
 # Create your views here.
 
