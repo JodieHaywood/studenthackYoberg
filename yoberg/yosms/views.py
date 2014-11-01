@@ -7,10 +7,10 @@ from bloomberg import RandomCompany
 from bloomberg import SelectedCompany
 # Create your views here.
 
-def sendSMS(user, message):
+def sendSMS(user, messageIn):
   print user.phonenumber
   client = TwilioRestClient(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
-  message = client.messages.create(body=message,
+  message = client.messages.create(body=messageIn,
                                    to=user.phonenumber,
                                    from_=settings.TWILIO_NUMBER)
   newSMS = SMS(sendTo=user,
