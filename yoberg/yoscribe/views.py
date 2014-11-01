@@ -19,13 +19,13 @@ def yo(request):
     randomData = RandomCompany.getRandomCompanyResponse()
 
     #sendText(number, randomData) needs more parsing of the data
-    sendSMS(user, randomData)
+    views.sendSMS(user, randomData)
   except Yoscriber.DoesNotExist:
     result = result + ", oops..."
 
   user = Yoscriber('DANCU', 7772031241)
   shizz = SelectedCompany.getSelectedCompanyResponse("TSLA")
-  sendSMS(user, randomData)
+  views.sendSMS(user, randomData)
 
   result = result + ", shizz - " + str(shizz)
 
