@@ -26,9 +26,9 @@ def updateSMSStatus(request):
   pass
 
 def respondToUser(request):
-  smsStr = str(request.POST['Body'])
-  print request.POST['From']
-  phoneNumber = str(request.POST['From'])
+  smsStr = str(request.GET['Body'])
+  print request.GET['From']
+  phoneNumber = str(request.GET['From'])
   print phoneNumber
 
   splitStr = smsStr.split()
