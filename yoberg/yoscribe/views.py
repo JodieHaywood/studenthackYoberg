@@ -14,15 +14,21 @@ def yo(request):
   print name
   result = "Yo! " + name
   try:
-    user = Yoscriber.objects.get(yoname=name)
-    number = user.phonenumber
+    userYo = Yoscriber.objects.get(yoname=name)
+    number = userYo.phonenumber
     print number
 
-    #randomData = "This is a test from the script of DOOM"
-    randomData = RandomCompany.getRandomCompanyResponse()
+    try:
+      stockYo = StockYoscription.objects.get(user=userYo)
+      data = SelectedCompany.getSelectedCompanyResponse(stockYo.stock)
+      sendSMS(userYo, data)
 
-    #sendText(number, randomData) needs more parsing of the data
-    sendSMS(user, randomData)
+    except Exception as e2:
+      print e2
+      #randomData = "This is a test from the script of DOOM"
+      randomData = RandomCompany.getRandomCompanyResponse()
+      sendSMS(userYo, randomData)
+
   except Exception as e:
     print e
     result = result + ", oops..."
