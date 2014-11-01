@@ -26,6 +26,8 @@ def updateSMSStatus(request):
   pass
 
 def respondToUser(request):
+  from pprint import pprint
+  pprint(request)
   smsStr = str(request.GET['Body'])
   print request.GET['From']
   phoneNumber = str(request.GET['From'])
