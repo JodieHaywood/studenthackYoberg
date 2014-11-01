@@ -18,6 +18,7 @@ def yo(request):
     number = user.phonenumber
     print number
 
+    #randomData = "This is a test from the script of DOOM"
     randomData = RandomCompany.getRandomCompanyResponse()
 
     #sendText(number, randomData) needs more parsing of the data
