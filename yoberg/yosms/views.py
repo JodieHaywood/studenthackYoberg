@@ -42,26 +42,28 @@ def respondToUser(request):
   if command == "YOSCRIBE":
     print "In yoscribe"
     name = str(splitStr[1])
+    print name
     try:
       try:
         newUser = Yoscriber(yoname=name, phonenumber=phoneNumber)
         newUser.save()
-      except e:
-        print e
+      except Exception as e1:
+        print e1
         try:
           respMessage = twiml.Response()
           respMessage.message("That username and number are in use or the database is down")
           return HttpResponse(respMessage)
           pass
-        except twilio.TwilioRestException as e:
-          print e
+        except Exception as e2:
+          print e2
+          return
       #TODO: add in an item to subscribe to, along with the data format required...
 
       respMessage = twiml.Response()
       respMessage.message("Yoscription successful! " + phoneNumber + ", Your Msg: " + smsStr)
       return HttpResponse(respMessage)
-    except twilio.TwilioRestException as e:
-      print e
+    except Exception as e3:
+      print e3
 
   elif command == "RANDOM":
     print "In random"
