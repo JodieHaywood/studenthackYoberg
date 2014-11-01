@@ -1,8 +1,10 @@
 from django.shortcuts import render
-<<<<<<< HEAD
 from yosms.models import SMS
 from twilio.rest import TwilioRestClient
 from yoberg import settings
+from django.http import HttpResponse
+from bloomberg import RandomCompany
+from bloomberg import SelectedCompany
 # Create your views here.
 
 def sendSMS(user, message):
@@ -17,11 +19,6 @@ def sendSMS(user, message):
 
 def updateSMSStatus(request):
   pass
-=======
-from django.http import HttpResponse
-from models import Yoscriber
-from bloomberg import RandomCompany
-from bloomberg import SelectedCompany
 
 # Create your views here.
 
@@ -43,4 +40,3 @@ def receiveSMS(request):
   elif command == "RANDOM":
     data = RandomCompany.getRandomCompanyResponse()
     #sendText(phoneNumber, data) needs more parsing of the data
->>>>>>> 59ebe9bcb10264331c58b093dff833a148d3d851
