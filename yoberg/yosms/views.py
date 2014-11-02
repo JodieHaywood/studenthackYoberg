@@ -178,7 +178,7 @@ def respondToUser(request):
     try:
       fieldVals = Bloomberg.getFieldValues(stockName, fieldsArr)
       print fieldVals
-      if not fieldVals[fieldsArr[0]]:
+      if not (fieldsArr[0] in fieldVals):
         result = "No data exists for given field."
       else:
         result = str(fieldVals['DS002']) + " has " + str(fieldsArr[0]) + " of: " + str(fieldVals[fieldsArr[0]]) + " "
