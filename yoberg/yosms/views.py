@@ -87,6 +87,12 @@ def respondToUser(request):
         respMessage = twiml.Response()
         respMessage.message(chosenData)
         return HttpResponse(respMessage)
+
+        #Now we Yo to all other users who need it...
+        stockYos = StockYoscription.objects.filter(stock=name)
+        for scription in stockYos:
+          yo_user(scription.user.yoname)
+
       except Exception as e5:
         print e5
     except Exception as e4:
@@ -135,23 +141,6 @@ def respondToUser(request):
         print ex2
 
 
-# Create your views here.
-
-def receiveSMS(request):
-  return HttpResponse("Dat SMS...")
-  smsStr = "" #TODO: get the correct SMS string...
-  phoneNumber = "" #TODO: get the phone number
-
-  splitStr = smsStr.split()
-  command = splitStr[0]
-  name = splitStr[1]
-
-  if command == "YOSCRIBE":
-    newUser = Yoscribe(yoname=name, phonenumber=phoneNumber)
-    newUser.save()
-
-    #TODO: add in an item to subscribe to, along with the data format required...
-
-  elif command == "RANDOM":
-    data = RandomCompany.getRandomCompanyResponse()
-    #sendText(phoneNumber, data) needs more parsing of the data
+def yo_user(user):
+  payload = {'api_token': api_key, 'username': user}
+  r = requests.post('http://api.justyo.co/yo/', data=payload)
