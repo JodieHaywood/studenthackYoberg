@@ -4,7 +4,7 @@ from yosms.models import StockYoscription
 from twilio.rest import TwilioRestClient
 from yoberg import settings
 from django.http import HttpResponse
-from bloomberg import SelectedCompany, getFields,RandomCompany
+from bloomberg import SelectedCompany, Bloomberg, RandomCompany
 from twilio import twiml
 from yoscribe.models import Yoscriber
 from yoberg.yo import yo_user
@@ -146,38 +146,38 @@ def respondToUser(request):
         return HttpResponse(respMessage)
       except Exception as ex2:
         print ex2
-  elif command == "GETFEILDS":
+  elif command == "GETFIELDS":
     print "Returning current number of feilds set on query"
     stockName = str(splitStr[1])
     try:
-      feilds = getFields(stockName)
-      feilds2 = ""
-      for f in feilds:
-        feilds2 += f + r"\n"
+      fields = Bloomberg.getFields(stockName)
+      fields2 = ""
+      for f in fields:
+        fields2 += f + r"\n"
       try:
         respMessage = twiml.Response()
-        respMessage.message(feilds2)
+        respMessage.message(fields2)
         return HttpResponse(respMessage)
       except Exception as twilioE:
         print "twilio error %s", twilioE
 
     except Exception as e:
       print "FAIL FAIL %s", e
-  elif command == "SETFEILDS":
-    print "SET FEILD TO USE"
+  elif command == "SETFIELDS":
+    print "SET FIELD TO USE"
     if not (splitStr and splitStr[1] and split[2]):
-      print "user is a dick slap them"
+      print "blargh"
       return
     stockName = str(splitStr[1])
-    feilds = splitStr[2:]
+    fields = splitStr[2:]
     try:
-      feilds = getFieldValues(stockName, feilds)
-      feilds2 = ""
-      for f in feilds:
-        feilds2 += str(f) + "\n"
+      fields = Bloomberg.getFieldValues(stockName, fields)
+      fields2 = ""
+      for f in fields:
+        fields2 += str(f) + "\n"
       try:
         respMessage = twiml.Response()
-        respMessage.message(feilds2)
+        respMessage.message(fields2)
         return HttpResponse(respMessage)
       except Exception as twilioE:
         print "twilio error %s", twilioE
