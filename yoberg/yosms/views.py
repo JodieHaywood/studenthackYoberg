@@ -154,7 +154,7 @@ def respondToUser(request):
       fields = Bloomberg.getFields(stockName)
       fields2 = ""
       for f in fields:
-        fields2 += f + r"\n"
+        fields2 += (f[0] + " " + f[1] + " " + f[2] + r"\n")
       try:
         respMessage = twiml.Response()
         respMessage.message(fields2)
@@ -186,7 +186,7 @@ def respondToUser(request):
 
     except Exception as e:
       print e
-      
+
   elif command == "HELP":
     respMessage = twiml.Response()
     respMessage.message(helpText)
