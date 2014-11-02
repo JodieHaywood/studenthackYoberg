@@ -173,7 +173,7 @@ def respondToUser(request):
       return
     stockName = str(splitStr[1])
     print stockName
-    fieldsArr = splitStr[2] + ["DS002"]
+    fieldsArr = [splitStr[2], "DS002"]
     print fieldsArr
     try:
       fieldVals = Bloomberg.getFieldValues(stockName, fieldsArr)
