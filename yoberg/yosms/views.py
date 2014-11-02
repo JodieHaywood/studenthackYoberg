@@ -180,7 +180,7 @@ def respondToUser(request):
       print fieldVals
       if not fieldVals[fieldsArr[0]]:
         result = "No data exists for given field."
-      else
+      else:
         result = str(fieldVals['DS002']) + " has " + str(fieldsArr[0]) + " of: " + str(fieldVals[fieldsArr[0]]) + " "
       print result
       try:
