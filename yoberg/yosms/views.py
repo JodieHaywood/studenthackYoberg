@@ -178,7 +178,10 @@ def respondToUser(request):
     try:
       fieldVals = Bloomberg.getFieldValues(stockName, fieldsArr)
       print fieldVals
-      result = str(fieldVals['DS002']) + " has " + str(fieldsArr[0]) + " of: " + str(fieldVals[fieldsArr[0]]) + " "
+      if not fieldVals[fieldsArr[0]]:
+        result = "No data exists for given field."
+      else
+        result = str(fieldVals['DS002']) + " has " + str(fieldsArr[0]) + " of: " + str(fieldVals[fieldsArr[0]]) + " "
       print result
       try:
         respMessage = twiml.Response()
