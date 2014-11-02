@@ -10,6 +10,8 @@ from yoscribe.models import Yoscriber
 from yoberg.yo import yo_user
 # Create your views here.
 
+helpText = ""
+
 def sendSMS(user, messageIn):
   print user.phonenumber
   try:
@@ -139,7 +141,6 @@ def respondToUser(request):
         return HttpResponse(respMessage)
       except Exception as ex2:
         print ex2
-
   elif command == "GETFEILDS":
     print "Returning current number of feilds set on query"
     stockName = str(splitStr[1])
@@ -154,3 +155,7 @@ def respondToUser(request):
 
     except Exception as e:
       print "FAIL FAIL %s", e    
+  elif command == "HELP":
+    respMessage = twiml.Response()
+    respMessage.message(helpText)
+    return HttpResponse(respMessage)
