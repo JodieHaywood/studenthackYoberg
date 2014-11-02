@@ -146,15 +146,39 @@ def respondToUser(request):
     stockName = str(splitStr[1])
     try:
       feilds = getFields(stockName)
+      feilds2 = ""
+      for f in feilds:
+        feilds2 += f + r"\n"
       try:
         respMessage = twiml.Response()
-        respMessage.message(chosenData)
+        respMessage.message(feilds2)
         return HttpResponse(respMessage)
       except Exception as twilioE:
         print "twilio error %s", twilioE
 
     except Exception as e:
-      print "FAIL FAIL %s", e    
+      print "FAIL FAIL %s", e
+  elif command == "SETFEILDS":
+    print "SET FEILD TO USE"
+    if not (splitStr and splitStr[1] and split[2]):
+      print "user is a dick slap them"
+      return
+    stockName = str(splitStr[1])
+    feilds = splitStr[2:]
+    try:
+      feilds = getFieldValues(stockName, feilds)
+      feilds2 = ""
+      for f in feilds:
+        feilds2 += str(f) + "\n"
+      try:
+        respMessage = twiml.Response()
+        respMessage.message(feilds2)
+        return HttpResponse(respMessage)
+      except Exception as twilioE:
+        print "twilio error %s", twilioE
+
+    except Exception as e:
+      print "FAIL FAIL %s", e
   elif command == "HELP":
     respMessage = twiml.Response()
     respMessage.message(helpText)
