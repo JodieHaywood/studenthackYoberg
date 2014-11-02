@@ -11,6 +11,8 @@ from yoscribe.models import Yoscriber
 from yoberg.yo import yo_user
 # Create your views here.
 
+helpText = ""
+
 def sendSMS(user, messageIn):
   print user.phonenumber
   try:
@@ -140,3 +142,8 @@ def respondToUser(request):
         return HttpResponse(respMessage)
       except Exception as ex2:
         print ex2
+
+  elif command == "HELP":
+    respMessage = twiml.Response()
+    respMessage.message(helpText)
+    return HttpResponse(respMessage)
