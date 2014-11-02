@@ -10,7 +10,12 @@ from yoscribe.models import Yoscriber
 from yoberg.yo import yo_user
 # Create your views here.
 
-helpText = ""
+helpText = """Welcome to YoBerg! The available commands are as follows: \n
+            * 'YOSCRIBE [YO USERNAME]': Subscribe to the Yo notification service \n
+            * 'STOCKSCRIBE [STOCK TICKER]': Subscribe to a particular stock ticker for Yo \n
+            * 'RANDOM': Get the last price for a random ticker \n
+            * 'INFO [STOCK TICKER]': Get information for a particular ticker \n
+            * 'FIND [TEXT]': Searches for fields for stocks"""
 
 def sendSMS(user, messageIn):
   print user.phonenumber
