@@ -168,14 +168,14 @@ def respondToUser(request):
 
   elif command == "GET":
     print "GET FIELD TO USE"
-    if not (splitStr and splitStr[1] and split[2]):
+    if not (splitStr and splitStr[1] and splitStr[2]):
       print "blargh"
       return
     stockName = str(splitStr[1])
     fieldsArr = splitStr[2] + ["DS002"]
     try:
       fieldVals = Bloomberg.getFieldValues(stockName, fieldsArr)
-      result = str(fieldVals['DS002']) + "has " + str(fieldsArr[0]) + " of: " + str(fieldVals[fieldsArr[0]]) + " "
+      result = str(fieldVals['DS002']) + " has " + str(fieldsArr[0]) + " of: " + str(fieldVals[fieldsArr[0]]) + " "
       try:
         respMessage = twiml.Response()
         respMessage.message(result)
