@@ -15,7 +15,8 @@ helpText = """Welcome to YoBerg! The available commands are as follows: \n
             * 'STOCKSCRIBE [STOCK TICKER]': Subscribe to a particular stock ticker for Yo \n
             * 'RANDOM': Get the last price for a random ticker \n
             * 'INFO [STOCK TICKER]': Get information for a particular ticker \n
-            * 'FIND [TEXT]': Searches for fields for stocks"""
+            * 'SEARCH [TEXT]': Searches for fields for stocks \n
+            * 'GET [STOCK TICKER] [FIELD]': Gets the value for the specified field"""
 
 def sendSMS(user, messageIn):
   print user.phonenumber
@@ -147,7 +148,7 @@ def respondToUser(request):
       except Exception as ex2:
         print ex2
 
-  elif command == "GETFIELDS":
+  elif command == "SEARCH":
     print "Returning current number of feilds set on query"
     stockName = str(splitStr[1])
     try:
@@ -165,21 +166,19 @@ def respondToUser(request):
     except Exception as e:
       print e
 
-  elif command == "SETFIELDS":
-    print "SET FIELD TO USE"
+  elif command == "GET":
+    print "GET FIELD TO USE"
     if not (splitStr and splitStr[1] and split[2]):
       print "blargh"
       return
     stockName = str(splitStr[1])
-    fields = splitStr[2:]
+    fields = splitStr[2] + ["DS002"]
     try:
       fields = Bloomberg.getFieldValues(stockName, fields)
-      fields2 = ""
-      for f in fields:
-        fields2 += str(f) + "\n"
+      result = str(result['DS002']) + "has " + str(fields[0]) + " of: " + str(result[fields[0]]) + " "
       try:
         respMessage = twiml.Response()
-        respMessage.message(fields2)
+        respMessage.message(result)
         return HttpResponse(respMessage)
       except Exception as twilioE:
         print twilioE
