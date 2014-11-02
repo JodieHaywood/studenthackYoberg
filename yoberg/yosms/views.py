@@ -154,7 +154,7 @@ def respondToUser(request):
       fields = Bloomberg.getFields(stockName)
       fields2 = ""
       for f in fields:
-        fields2 += (f[0] + ": " + f[1] + " " + f[2] + "%0a")
+        fields2 += (f[0] + ": " + f[1] + " " + f[2] + "\n")
       try:
         respMessage = twiml.Response()
         respMessage.message(fields2)
