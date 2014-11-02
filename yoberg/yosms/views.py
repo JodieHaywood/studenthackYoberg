@@ -84,14 +84,14 @@ def respondToUser(request):
       chosenData = str(SelectedCompany.getSelectedCompanyResponse(name))
       print chosenData
       try:
-        respMessage = twiml.Response()
-        respMessage.message(chosenData)
-        return HttpResponse(respMessage)
-
         #Now we Yo to all other users who need it...
         stockYos = StockYoscription.objects.filter(stock=name)
         for scription in stockYos:
           yo_user(scription.user.yoname)
+
+        respMessage = twiml.Response()
+        respMessage.message(chosenData)
+        return HttpResponse(respMessage)
 
       except Exception as e5:
         print e5
