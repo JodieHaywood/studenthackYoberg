@@ -8,6 +8,7 @@ from bloomberg import RandomCompany
 from bloomberg import SelectedCompany
 from twilio import twiml
 from yoscribe.models import Yoscriber
+from yo import yo_user
 # Create your views here.
 
 def sendSMS(user, messageIn):
@@ -139,8 +140,3 @@ def respondToUser(request):
         return HttpResponse(respMessage)
       except Exception as ex2:
         print ex2
-
-
-def yo_user(user):
-  payload = {'api_token': api_key, 'username': user}
-  r = requests.post('http://api.justyo.co/yo/', data=payload)
