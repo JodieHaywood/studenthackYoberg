@@ -146,6 +146,7 @@ def respondToUser(request):
         return HttpResponse(respMessage)
       except Exception as ex2:
         print ex2
+
   elif command == "GETFIELDS":
     print "Returning current number of feilds set on query"
     stockName = str(splitStr[1])
@@ -159,10 +160,11 @@ def respondToUser(request):
         respMessage.message(fields2)
         return HttpResponse(respMessage)
       except Exception as twilioE:
-        print "twilio error %s", twilioE
+        print twilioE
 
     except Exception as e:
-      print "FAIL FAIL %s", e
+      print e
+
   elif command == "SETFIELDS":
     print "SET FIELD TO USE"
     if not (splitStr and splitStr[1] and split[2]):
@@ -180,10 +182,11 @@ def respondToUser(request):
         respMessage.message(fields2)
         return HttpResponse(respMessage)
       except Exception as twilioE:
-        print "twilio error %s", twilioE
+        print twilioE
 
     except Exception as e:
-      print "FAIL FAIL %s", e
+      print e
+      
   elif command == "HELP":
     respMessage = twiml.Response()
     respMessage.message(helpText)
