@@ -8,7 +8,7 @@ from bloomberg import RandomCompany
 from bloomberg import SelectedCompany
 from twilio import twiml
 from yoscribe.models import Yoscriber
-from yo import yo_user
+from yoberg.yo import yo_user
 # Create your views here.
 
 def sendSMS(user, messageIn):
