@@ -4,8 +4,7 @@ from yosms.models import StockYoscription
 from twilio.rest import TwilioRestClient
 from yoberg import settings
 from django.http import HttpResponse
-from bloomberg import RandomCompany
-from bloomberg import SelectedCompany
+from bloomberg import SelectedCompany, getFields,RandomCompany
 from twilio import twiml
 from yoscribe.models import Yoscriber
 from yoberg.yo import yo_user
@@ -140,3 +139,18 @@ def respondToUser(request):
         return HttpResponse(respMessage)
       except Exception as ex2:
         print ex2
+
+  elif command == "GETFEILDS":
+    print "Returning current number of feilds set on query"
+    stockName = str(splitStr[1])
+    try:
+      feilds = getFields(stockName)
+      try:
+        respMessage = twiml.Response()
+        respMessage.message(chosenData)
+        return HttpResponse(respMessage)
+      except Exception as twilioE:
+        print "twilio error %s", twilioE
+
+    except Exception as e:
+      print "FAIL FAIL %s", e    
