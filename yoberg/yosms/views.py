@@ -172,10 +172,10 @@ def respondToUser(request):
       print "blargh"
       return
     stockName = str(splitStr[1])
-    fields = splitStr[2] + ["DS002"]
+    fieldsArr = splitStr[2] + ["DS002"]
     try:
-      fields = Bloomberg.getFieldValues(stockName, fields)
-      result = str(result['DS002']) + "has " + str(fields[0]) + " of: " + str(result[fields[0]]) + " "
+      fieldVals = Bloomberg.getFieldValues(stockName, fieldsArr)
+      result = str(fieldVals['DS002']) + "has " + str(fieldsArr[0]) + " of: " + str(fieldVals[fieldsArr[0]]) + " "
       try:
         respMessage = twiml.Response()
         respMessage.message(result)
